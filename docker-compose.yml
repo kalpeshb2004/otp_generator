@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:7
+    restart: always
+    volumes: [mongo_data:/data/db]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+
+  backend:
+    build: ./backend
+    restart: always
+    ports: ['4000:4000']
+    env_file: .env
+    depends_on: [mongo]
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports: ['3000:3000']
+    env_file: .env
+    depends_on: [backend]
+
+volumes:
+  mongo_data:
