@@ -1,5 +1,4 @@
-@"
-{
+﻿{
   "build": {
     "builder": "NIXPACKS"
   },
@@ -9,9 +8,3 @@
     "restartPolicyType": "ON_FAILURE"
   }
 }
-"@ | Out-File -FilePath D:\sms-receiver\sms-receiver\backend\railway.json -Encoding utf8
-
-cd D:\sms-receiver\sms-receiver
-git add backend/railway.json
-git commit -m "fix: add railway config"
-git push origin main
